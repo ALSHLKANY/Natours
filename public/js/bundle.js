@@ -2204,7 +2204,7 @@
     try {
       const res = await axios_default({
         method: "POST",
-        url: "http://127.0.0.1:8000/api/v1/users/login",
+        url: "/api/v1/users/login",
         data: {
           email,
           password
@@ -2224,7 +2224,7 @@
     try {
       const res = await axios_default({
         method: "GET",
-        url: "http://127.0.0.1:8000/api/v1/users/logout"
+        url: "/api/v1/users/logout"
       });
       if (res.data.status === "success")
         location.reload(true);
@@ -2237,10 +2237,9 @@
   var catchAsync = require_catchAsync();
   var updateSettings = async (data, type) => {
     try {
-      console.log("we go");
       const res = await axios_default({
         method: "PATCH",
-        url: `http://127.0.0.1:8000/api/v1/users/${type === "password" ? "updateMyPassword" : "updateMe"}`,
+        url: `/api/v1/users/${type === "password" ? "updateMyPassword" : "updateMe"}`,
         data
       });
       if (res.data.status === "success")
@@ -2256,10 +2255,7 @@
       "pk_test_51OvewUJzRBgGPhr2BoQV9fW7BBMYMGiTjj6opQGxdQ5m9qkpmq2FKuTgc94ZJfupkGXj9KWSHHT1LtmgvHUKzhyX00QPLoSKWD"
     );
     try {
-      const session = await axios_default(
-        `http://127.0.0.1:8000/api/v1/booking/checkout-session/${tourId}`
-      );
-      console.log(session);
+      const session = await axios_default(`/api/v1/booking/checkout-session/${tourId}`);
       await stripe.redirectToCheckout({
         sessionId: session.data.session.id
       });
@@ -2297,7 +2293,6 @@
       form.append("name", document.getElementById("name").value);
       form.append("email", document.getElementById("email").value);
       form.append("photo", document.getElementById("photo").files[0]);
-      console.log("here");
       updateSettings(form, "data");
     });
   }
