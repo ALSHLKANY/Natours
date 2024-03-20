@@ -26,6 +26,9 @@ app.set('views', path.join(__dirname, 'views'));
 
 // GLOBAL MIDDLEWARES
 app.use(cors());
+
+app.options('*', cors());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
