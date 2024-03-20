@@ -39,7 +39,7 @@ process.on('unhandledRejection', (err) => {
   });
 });
 
-proccess.on('SIGTERM', () => {
+process.on('SIGTERM', () => {
   console.log('SIGTERM RECEIVED.');
   server.close(() => {
     console.log('Proccess terminated');
